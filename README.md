@@ -1,8 +1,8 @@
 # Splunk: The Basics | TryhackMe WriteUp
-Splunk is one of the most used SIEM tool to collect, analyze and correlate logs from network and machines in realtime. In this room, we explore the basics of Splunk and its functionalities, and how it provides better visibility of network activities and helps speed up detection. This room and most of the informations below come from the room [Splunk: The Basics](https://tryhackme.com/room/splunk101) of TryHackMe.
+Splunk is one of the most used SIEM tools to collect, analyze and correlate logs from network and machines in realtime. In this room, we explore the basics of Splunk and its functionalities, and how it provides better visibility of network activities and helps speed up detection. This room and most of the information below come from the room [Splunk: The Basics](https://tryhackme.com/room/splunk101) of TryHackMe.
 
 We start by connecting to a virtual machine which create a Splunk instance that we'll use in the lab.
-![Alt Text](assets/images/ff.png)
+![Connecting to Virtual Machine](assets/images/splunk_basic_connect_virtual_machine.png)
 
 ## Task 3: Splunk Components
 Splunk has three main components: Forwarder, Indexer, and Search Head. 
@@ -18,75 +18,106 @@ Splunk Search Head is the place within the Search & Reporting App where users ca
 
 
 Answer the questions below
-Question: Which component is used to collect and send data over the Splunk instance?
-Response: Forwarder
+**Question**: Which component is used to collect and send data over the Splunk instance?
+**Response**: Forwarder
 
 ## Task 4: Navigating Splunk
 Let's look at each section of the home screen.
 
 ### Splunk Bar
 The top panel is the Splunk Bar as shown below: 
-![Splunk Bar](assets/images/ff.png)
+![Splunk Bar](assets/images/splunk-bar.png)
 
 In the Splunk Bar, we have the following options available:
 
-- Messages: View system-level notifications and messages.
-- Settings: Configure Splunk instance settings.
-- Activity: Review the progress of search jobs and processes.
-- Help: View tutorials and documentation.
-- Find: Search across the App.
+- **Messages**: View system-level notifications and messages.
+- **Settings**: Configure Splunk instance settings.
+- **Activity**: Review the progress of search jobs and processes.
+- **Help**: View tutorials and documentation.
+- **Find**: Search across the App.
 
 ### Apps Panel
 This panel shows the apps installed for the Splunk instance. The default app for every Splunk installation is Search & Reporting. 
 
 ### Explore Splunk
 This panel contains quick links to add data to the Splunk instance, add new Splunk apps, and access the Splunk documentation. 
-![Explore Splunk](assets/images-ff.png)
+![Explore Splunk](assets/explore-splunk.png)
 
 ### Splunk Dashboard
-The last section is the Home Dashboard. By default, no dashboards are displayed. You can choose from a range of dashboards readily available within your Splunk instance. You can select a dashboard from the dropdown menu or by visiting the dashboards listing page.
+The last section is the Home Dashboard. By default, no dashboards are displayed. You can choose from a range of dashboards readily available within your Splunk instance. You can select a dashboard from the drop-down menu or by visiting the dashboards listing page.
 
 Answer the questions below.
-Question: In the Add Data tab, which option is used to collect data from files and ports?
-Response: Monitor
+**Question**: In the Add Data tab, which option is used to collect data from files and ports?
+**Response**: Monitor
 
 ## Task 5: Adding Data
-For this task i opened an attack box in TryHackMe, opened Firefox browser and use the created link from the virtaual machine to access to a Splunk instance. I then clicked on Add data and on  upload to upload the file VPNlogs.json in folder `/root/Rooms/SplunkBasic/`. Next i selected _json as source type, clicked on next, in the options i clicked on create new index, created the index VPN_Logs and used it in the dropdown for the index.
+For this task I opened an attack box in TryHackMe, opened Firefox browser and use the created link from the virtual machine to access to a Splunk instance. I then clicked on **Add data**, selected **Upload** to upload the file VPNlogs.json in the folder `/root/Rooms/SplunkBasic/`. Next, I selected _json as **source type**, clicked on next, in the options I clicked on **create new index**, created the index VPN_Logs and selected vpn_logs in the index's drop-down.
 
 Answer the questions below.
-Question 1: Upload the data attached to this task and create an index "VPN_Logs". How many events are present in the log file?
-After uplading the log file i clicked on Start Searching and i've been redirected to the search page with those default query in the search bar :
-`source="VPNlogs.json" host="ip-10-10-40-195" index="vpn_logs" sourcetype="_json"`. Below the search bar we can see that 2862 events has been returned
-![Question 1 screenshot](assets/images/question1.png)
+**Question 1**: Upload the data attached to this task and create an index "VPN_Logs". How many events are present in the log file?
+After uploading the log file I clicked on **Start Searching** and i've been redirected to the search page with those default query in the search bar :
 
-Response: `2862`
+```bash
+source="VPNlogs.json" host="ip-10-10-40-195" index="vpn_logs" sourcetype="_json"
+```
 
-Question 2: How many log events are captured by the user Maleena?
-I wrote the query `UserName="Maleena"` in the search bar and it returned 60 events.
-![Question 2 screenshot](assets/images/ff.png)
+Below the search bar we can see that 2862 events have been returned.
+![Question 1 screenshot](assets/images/splunk_lab_question_1.png)
 
-Response: `60`
+**Response**: `2862`
 
-Question 3: What is the username associated with IP 107.14.182.38?
-I wrote the query `Source_ip="107.14.182.38"`in the search bar. It returned 26 events with the same UserName which is Smith
-![Question 3 screenshot](assets/images/ff.png)
+**Question 2**: How many log events are captured by the user Maleena?
+I wrote the following query in the search bar and it returned 60 events:
 
-Response: `Smith`
+```bash
+UserName="Maleena"
+```
 
-Question 4: What is the number of events that originated from all countries except France?
-I used the query `Source_Country!="France"`and it returned 2814 events.
-![Question 4 screenshot](assets/images/ff.png)
+![Question 2 screenshot](assets/images/splunk_lab_question_2.png)
 
-Response: `2814`
+**Response**: `60`
 
-Question 5: How many VPN events were associated with the IP 107.3.206.58?
-I used the query `Source_ip="107.3.206.58"` in the search bar and it returned 14 events.
-![Question 5 screenshot](assets/images/ff.png)
+**Question 3**: What is the username associated with IP 107.14.182.38?
+I wrote the following query in the search bar: 
 
-Response: `14`
+```bash
+Source_ip="107.14.182.38"
+```
 
-Conclusion
-I found this room really interesting and i was gratefull for the pportunity to learn and explore some functionalities of Splunk. It helped me understand how splunk work and how it use to for uick detections. I'm looking forward to work on more advanced project to improve my familiarity and experience in Splunk.
+![Question 3 screenshot](assets/images/splunk_lab_question_3.png)
+
+It returned 26 events, all associated to the username "Smith".
+
+**Response**: `Smith`
+
+**Question 4**: What is the number of events that originated from all countries except France?
+I used the following query : 
+
+```bash
+Source_Country!="France"
+```
+
+![Question 4 screenshot](assets/images/splunk_lab_question_4.png)
+
+It returned 2814 events.
+
+**Response**: `2814`
+
+**Question 5**: How many VPN events were associated with the IP 107.3.206.58?
+I used the following query in the search bar:
+
+```bash
+Source_ip="107.3.206.58"
+```
+
+![Question 5 screenshot](assets/images/splunk_lab_question_5.png)
+
+It returned 14 events.
+
+**Response**: `14`
+
+## Conclusion
+I found this room really interesting, and I was grateful for the opportunity to learn and explore some functionalities of Splunk. It helped me understand how it works and helped me to learn foundational knowledge about Splunk. I'm looking forward to work on more advanced projects to improve my familiarity and experience in Splunk.
 
 
 
