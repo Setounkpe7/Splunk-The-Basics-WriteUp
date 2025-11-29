@@ -4,6 +4,7 @@ Splunk is one of the most used SIEM tools to collect, analyze and correlate logs
 We start by connecting to a virtual machine which create a Splunk instance that we'll use in the lab.
 ![Connecting to Virtual Machine](assets/images/splunk_basic_connect_virtual_machine.png)
 
+
 ## Task 3: Splunk Components
 Splunk has three main components: Forwarder, Indexer, and Search Head. 
 
@@ -18,8 +19,11 @@ Splunk Search Head is the place within the Search & Reporting App where users ca
 
 
 Answer the questions below
+
 **Question**: Which component is used to collect and send data over the Splunk instance?
+
 **Response**: Forwarder
+
 
 ## Task 4: Navigating Splunk
 Let's look at each section of the home screen.
@@ -41,19 +45,23 @@ This panel shows the apps installed for the Splunk instance. The default app for
 
 ### Explore Splunk
 This panel contains quick links to add data to the Splunk instance, add new Splunk apps, and access the Splunk documentation. 
-![Explore Splunk](assets/explore-splunk.png)
+![Explore Splunk](assets/images/explore-splunk.png)
 
 ### Splunk Dashboard
 The last section is the Home Dashboard. By default, no dashboards are displayed. You can choose from a range of dashboards readily available within your Splunk instance. You can select a dashboard from the drop-down menu or by visiting the dashboards listing page.
 
 Answer the questions below.
+
 **Question**: In the Add Data tab, which option is used to collect data from files and ports?
+
 **Response**: Monitor
+
 
 ## Task 5: Adding Data
 For this task I opened an attack box in TryHackMe, opened Firefox browser and use the created link from the virtual machine to access to a Splunk instance. I then clicked on **Add data**, selected **Upload** to upload the file VPNlogs.json in the folder `/root/Rooms/SplunkBasic/`. Next, I selected _json as **source type**, clicked on next, in the options I clicked on **create new index**, created the index VPN_Logs and selected vpn_logs in the index's drop-down.
 
 Answer the questions below.
+
 **Question 1**: Upload the data attached to this task and create an index "VPN_Logs". How many events are present in the log file?
 After uploading the log file I clicked on **Start Searching** and i've been redirected to the search page with those default query in the search bar :
 
@@ -66,6 +74,7 @@ Below the search bar we can see that 2862 events have been returned.
 
 **Response**: `2862`
 
+
 **Question 2**: How many log events are captured by the user Maleena?
 I wrote the following query in the search bar and it returned 60 events:
 
@@ -76,6 +85,7 @@ UserName="Maleena"
 ![Question 2 screenshot](assets/images/splunk_lab_question_2.png)
 
 **Response**: `60`
+
 
 **Question 3**: What is the username associated with IP 107.14.182.38?
 I wrote the following query in the search bar: 
@@ -90,6 +100,7 @@ It returned 26 events, all associated to the username "Smith".
 
 **Response**: `Smith`
 
+
 **Question 4**: What is the number of events that originated from all countries except France?
 I used the following query : 
 
@@ -103,6 +114,7 @@ It returned 2814 events.
 
 **Response**: `2814`
 
+
 **Question 5**: How many VPN events were associated with the IP 107.3.206.58?
 I used the following query in the search bar:
 
@@ -115,6 +127,7 @@ Source_ip="107.3.206.58"
 It returned 14 events.
 
 **Response**: `14`
+
 
 ## Conclusion
 I found this room really interesting, and I was grateful for the opportunity to learn and explore some functionalities of Splunk. It helped me understand how it works and helped me to learn foundational knowledge about Splunk. I'm looking forward to work on more advanced projects to improve my familiarity and experience in Splunk.
